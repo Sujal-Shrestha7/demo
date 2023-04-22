@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+{% block content %}
+{% if form_type == 'login' %}
+<div class="form-container">
+    <div class="background-blurrer">
+        <div id="login-page">
+            <img src="{% static 'images/Exhub_logo.png' %}" alt="expertise hub socials-logo">
+            <h2 class="logsign-header">Log in</h2>
+            <form action="" class="form log-form" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Email or username">
+                <input type="password" name="password" placeholder="Password">
+                <a href="reset_pass.html" class="ls-links">Forgot password ?</a>
+                <button type="submit" class="logsign-btn">Log in</button>
+            </form>
+            <div class="line"></div>
+            <p>Don't have an account ?</p>
+            <div class="reg-link">
+                <div class="reg-expert">
+                    <p>If you're an expert</p>
+                    <a href="{% url 'register-expert' %}" class="ls-links">Register Here</a>
+                </div>
+                <div class="reg-client">
+                    <p>If you're a client</p>
+                    <a href="{% url 'register-client' %}" class="ls-links">Register Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{% url 'create-expert' %}">Create Expert</a>
+</div>
+{% elif form_type == "Expert" %}
+    <h2>Create Expert Field</h2>
+<form action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+
+
+{% elif form_type == "register expert" %}
+<div class="form-container">
+     <div class="background-blurrer">
+        <div id="signup-page">
+            <img src="{% static 'images/Exhub_logo.png' %}" alt="expertise hub socials-logo">
+            <h2 class="logsign-header">Expert sign up</h2>
+            <form action="{% url 'register-expert' %}" class="form sign-form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                {% endfor %}
+                 <button type="submit" class="logsign-btn">Register</button>
+
+            </form>
+            <div class="line"></div>
+            <p>Already have an account ?</p>
+            <a href="{% url 'user-login' %}" class="ls-links">Log in</a>
+        </div>
+    </div>
+</div>
+
+{% elif form_type == "register client" %}
+<div class="form-container">
+     <div class="background-blurrer">
+        <div id="signup-page1">
+            <img src="{% static 'images/Exhub_logo.png' %}" alt="expertise hub socials-logo">
+            <h2 class="logsign-header">Client sign up</h2>
+            <form action="{% url 'register-client' %}" class="form sign-form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                {% endfor %}
+                 <button type="submit" class="logsign-btn">Register</button>
+
+            </form>
+            <div class="line"></div>
+            <p>Already have an account ?</p>
+            <a href="{% url 'user-login' %}" class="ls-links">Log in</a>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock content %}

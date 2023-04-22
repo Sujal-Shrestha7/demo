@@ -1,0 +1,32 @@
+
+  <!-- Top Navigation -->
+  {% load static %}
+  </div>
+  <div class="hero">
+    <div class="topmost">
+        <nav class="top-nav">
+            <img src="{% static 'images/Exhub_logo.png' %}" alt="logo" class="main-logo">
+            <div class="nav-links">
+                <a href="{% url 'landing-page' %}" class="nav-link">Home</a>
+                <a href="{% url 'expert-list' %}" class="nav-link">Experts</a>
+                <a href="{% url 'landing-page' %}" class="nav-link">Categories</a>
+                <a href="#testimonials" class="nav-link">Account</a>
+                <a href="/aboutUs.html" class="nav-link">Inbox</a>
+                <a href="/additional/blogs.html" class="nav-link">Blogs</a>
+            </div>
+            <div class="log-sign">
+                <a href="{% url 'user-logout' %}"><button type="button" class="button login">LOG OUT</button></a>
+            </div>
+        </nav>
+
+        <h1 class="slogan">Connect with <span class="bold-text"><b>Experts</b></span></h1>
+
+        <form action="https://google.com/search" method="get" class="search-field">
+            <img src="{% static 'images/search-icon.png' %}" alt="Search icon" class="search-icon">
+            <input class="field" type="search" placeholder="e.g. Fashion Designing" id="search" name="q" required/>
+            <button type="submit" class="submit-btn">Browse</button>
+        </form>
+
+    </div>
+</div>
+

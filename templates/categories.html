@@ -1,0 +1,19 @@
+
+  <!-- Categories -->
+  <div id="categories" class="parent-div">
+    <h2 class="section-header">Browse by categories</h2>
+    <div class="categories">
+    {% for category in categories|slice:":8" %}
+      <div class="categories-container">
+        <div class="category-image">
+          <img src="{{category.categories_image.url}}" alt="{{category.title}}">
+        </div>
+        <div class="category-text">
+          <p>{{category.title}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <button type="button" class="cta-btn">LOAD MORE</button>
+  </div>
+

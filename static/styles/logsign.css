@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Oxygen:wght@300;400&family=Poppins:wght@100;200;300;400;500&family=Roboto:wght@100;300;400&display=swap');
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "inter", sans-serif;
+}
+
+
+.form-container {
+    height: min(100vh, 1000px);
+    width: 100%;
+    background-image : url("../images/dark_background.jpg");
+    background-size: cover;
+}
+
+
+
+.background-blurrer {
+    /* outline: 1px solid red; */
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+#login-page,
+#signup-page,
+#signup-page1,
+#password-reset-page {
+    background: rgba(255, 255, 255, 0.1);
+    /* outline: 1px solid red; */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+    width: min(70%, 500px);
+    padding: 20px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+    box-shadow: -2px 4px 4px rgba(0,0,0,0.1);
+  }
+
+  #login-page > img,
+  #signup-page > img, #signup-page1 > img,
+  #password-reset-page > img {
+    width: 80px;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  .logsign-header {
+    color: white;
+    margin-bottom: 30px;
+  }
+
+  .form input {
+    border-radius: 2px;
+    border: 1px solid rgb(171, 171, 171);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 8px 10px 8px 32px;
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    color: white;
+  }
+
+
+  /* input field icons for login form */
+
+  .log-form > input:nth-child(2) {
+    background-image: url("../images/login_page_icons/user_icon.svg");
+  }
+
+  .log-form > input:nth-child(3 ) {
+    background-image: url("../images/login_page_icons/key_icon.svg");
+  }
+
+
+  /* input field icons for client signup form */
+
+  .sign-form > input:nth-child(2) {
+    background-image: url("../images/login_page_icons/user_icon.svg");
+  }
+  .sign-form > input:nth-child(3) {
+    background-image: url("../images/login_page_icons/mail_icon.svg");
+  }
+
+
+  .sign-form > input:nth-child(4) {
+    background-image: url("../images/login_page_icons/key_icon.svg");
+  }
+
+  .sign-form > input:nth-child(5) {
+    background-image: url("../images/login_page_icons/key_icon.svg");
+  }
+
+
+  /* input field icons for expert signup form */
+
+  .sign-form-ex > input:nth-child(1) {
+    background-image: url("/images/login_page_icons/mail_icon.svg");
+  }
+
+  .sign-form-ex > input:nth-child(2) {
+    background-image: url("/images/login_page_icons/phone_icon.svg");
+  }
+
+  .sign-form-ex > input:nth-child(3) {
+    background-image: url("/images/login_page_icons/user_icon.svg");
+  }
+
+  .sign-form-ex > input:nth-child(4) {
+    background-image: url("/images/login_page_icons/key_icon.svg");
+  }
+
+  .sign-form-ex > input:nth-child(5) {
+    background-image: url("/images/login_page_icons/key_icon.svg");
+  }
+
+  /* input field icons for forgot password form */
+
+  .pass-reset > input:nth-child(1) {
+    background-image: url("/images/login_page_icons/mail_icon.svg");
+  }
+
+
+
+  .form > input {
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 6px 8px;
+    transition: box-shadow 300ms ease;
+  }
+
+  .form > input:valid {
+    background-color: transparent;
+  }
+  .form > input:focus {
+    outline: none;
+    box-shadow: 0 3px 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .form > input::placeholder {
+    opacity: 0.8;
+    color: rgb(222, 222, 222);
+  }
+
+
+  .ls-links:link,
+  .ls-links:visited {
+    color: #cad8fb;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .ls-links:hover {
+    color: #7298f8;
+  }
+
+  .logsign-btn {
+    display: block;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border-radius: 2px;
+    border: 1px solid rgb(171, 171, 171);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    margin: 20px 0 0;
+    transition: all 300ms ease;
+  }
+  .logsign-btn:hover {
+    background: rgba(255, 255, 255, 0.2)
+  }
+
+  .line {
+    width: 80%;
+    margin: 30px auto;
+    height: 0.5px;
+    background: rgba(255, 255, 255, 0.3);
+
+  }
+
+  #login-page > p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }
+
+  .reg-link > * {
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .reg-link {
+    display: flex;
+    padding-inline: 20px;
+    justify-content: space-between;
+  }
+  .reg-link a {
+    display: block;
+    margin: 10px 0 10px;
+  }
+
+  .signup-page > p {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+  }
+  #signup-page > a {
+    width: max-content;
+    margin: 20px auto 20px;
+    display: inline;
+  }
+
+  /* password reset page */
+
+  #password-reset-page > p {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+  }

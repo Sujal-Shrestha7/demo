@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Expertise Hub</title>
+
+
+    <!-- For using google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Assistant:wght@200&family=Inter:wght@100;200;300;400;500&family=Oxygen:wght@300;400&family=Poppins:wght@100;200;300;400;500&family=Roboto:wght@100;300;400&display=swap"
+            rel="stylesheet">
+
+
+    <!-- For using font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+          integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+
+    <!-- Local style sheet -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'styles/logsign.css' %}"/>
+
+
+    <!-- local script file -->
+    <script defer src="{% static 'scripts/script.js' %}"></script>
+</head>
+
+
+<body>
+
+
+{% if request.user.is_authenticated %}
+    {% include 'navigation.html' %}
+
+    {% block additional_content %}
+        {% include 'experts.html' %}
+        {% include 'categories.html' %}
+        {% include 'testimonials.html' %}
+        {% include 'speciality.html' %}
+        {% include 'footer.html' %}
+    {% endblock additional_content %}
+
+
+{% else %}
+
+    {% block content %}
+<div class="hero">
+    <div class="topmost">
+        <nav class="top-nav">
+            <img src="{% static 'images/Exhub_logo.png' %}" alt="logo" class="main-logo">
+            <div class="nav-links">
+                <a href="/index.html" class="nav-link">Home</a>
+                <a href="#experts" class="nav-link">Experts</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="/additional/aboutUs.html" class="nav-link">About&nbsp;us</a>
+                <a href="/additional/blogs.html" class="nav-link">Blogs</a>
+            </div>
+            <div class="log-sign">
+                <a href="{% url 'user-login' %}">
+                    <button type="button" class="button login">LOGIN</button>
+                </a>
+            </div>
+        </nav>
+
+        <h1 class="slogan">Connect with <span class="bold-text"><b>Experts</b></span></h1>
+
+        <form action="https://google.com/search" method="get" class="search-field">
+            <img src="{% static 'images/search-icon.png' %}" alt="Search icon" class="search-icon">
+            <input class="field" type="search" placeholder="e.g. Fashion Designing" id="search" name="q" required/>
+            <button type="submit" class="submit-btn">Browse</button>
+        </form>
+
+    </div>
+</div>
+
+
+<!-- Experts -->
+  <div id="experts" class="experts parent-div">
+    <h2 class="section-header">Top recommended experts</h2>
+    <div class="cards">
+      {% for expert in experts|slice:':8' %}
+      <div class="card-container">
+        <div class="card-image">
+          <img src="{{expert.profile_photo.url}}" alt="{{expert.full_name}}">
+        </div>
+        <div class="card-content">
+          <h3 class="expert-name">{{expert.full_name}}</h3>
+          <h4 class="designation">{{expert.position}}</h4>
+           <a href="{% url 'expert-details' expert.id %}"><button type="button" class="card-btn">View Profile</button></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'expert-list' %}"><button type="button" class="cta-btn">LOAD MORE</button></a>
+  </div>
+
+<!-- Categories -->
+
+
+  <div id="categories" class="parent-div">
+    <h2 class="section-header">Browse by categories</h2>
+    <div class="categories">
+    {% for category in categories|slice:":8" %}
+      <div class="categories-container">
+        <div class="category-image">
+          <img src="{{category.categories_image.url}}" alt="{{category.title}}">
+        </div>
+        <div class="category-text">
+          <p>{{category.title}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    <button type="button" class="cta-btn">LOAD MORE</button>
+  </div>
+
+
+
+<!-- Testimonials-->
+
+<div id="testimonials" class="parent-div">
+    <h2 class="section-header">Words from the clients
+    </h2>
+    <div class="testimonials">
+        <div class="testimonial-container">
+            <div class="testimonial-image">
+                <img src="{% static 'images/testimonials/katherine_johnson.jpg' %}" alt="Katherine Johnson">
+            </div>
+            <div class="title">
+                <h2>Katherine Johnson</h2>
+                <p>Marketing Executive
+                <p>
+
+            </div>
+            <blockquote class="quote">
+                "We really needed a marketing expert who could help us with our long awaited marketing campaign. Gladly
+                we
+                stumbled upon Expertise Hub. We found the right expert at the right time resulting in a drastic increase
+                in
+                our sales."
+            </blockquote>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial-image">
+                <img src="{% static 'images/testimonials/mike_miller.jpg' %}" alt="Mike Miller">
+            </div>
+            <div class="title">
+                <h2>Mike Miller</h2>
+                <p>College Sophomore
+                <p>
+            </div>
+            <blockquote class="quote">
+                "I really needed an expert to help me assist in some of the topics of my project that I didn't know much
+                of.
+                Hopefully expertise hub was a life saver for me. I found the right experts at the right time who could
+                assist
+                me
+                with their expertise."
+            </blockquote>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial-image">
+                <img src="{% static 'images/testimonials/scarlet_brown.jpg' %}" alt="Scarlet Brown">
+            </div>
+            <div class="title">
+                <h2>Scarlet Brown</h2>
+                <p>Aspiring Software Engineer
+                <p>
+            </div>
+            <blockquote class="quote">
+                "Coders when they are starting out their coding journey run into errors and bugs every now and then.
+                It's so
+                much frustrating and demotivating when you try for hours and still can't solve the issue. Luckily
+                Expertise
+                Hub
+                has always been by my side."
+            </blockquote>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial-image">
+                <img src="{% static 'images/testimonials/stefan_stefancik.jpg' %}" alt="Stefan Stefancik">
+            </div>
+            <div class="title">
+                <h2>Stefan Stefancik</h2>
+                <p>Guitarist
+                <p>
+            </div>
+            <blockquote class="quote">
+                "Although I've been playing for my band for about half a decade, there are times when I struggle to
+                perform on
+                stages due to crowd fear. Tips from musical experts from Expertise Hub has helped
+                overcome this fear and improve my
+                musical skills."
+            </blockquote>
+        </div>
+    </div>
+
+</div>
+
+<!-- speciality section -->
+
+
+<div class="specialities  parent-div">
+    <h2 class="section-header">Why choose us ?
+    </h2>
+    <div class="speciality">
+        <div class="spec-left">
+            <img src="{% static 'images/spec_img.jpg' %}" alt="a girl with a laptop">
+        </div>
+        <div class="spec-right">
+            <p>A whole world of experts at your fingertips.</p>
+            <ul class="spec-list">
+                <li>
+                    <h3 class="list-heading">Proof of quality</h3>
+                    <p class="list-description">Check any pro&#39;s work samples, client reviews, and identity
+                        verification.</p>
+                </li>
+                <li>
+                    <h3 class="list-heading">No cost until you hire</h3>
+                    <p class="list-description">Browse and consult freely. Pay only after you've booked an
+                        appointment.</p>
+                </li>
+                <li>
+                    <h3 class="list-heading">Safe and secure</h3>
+                    <p class="list-description">Be carefree with your personal data. It&#39;s safe us.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+
+    {% endblock content %}
+{% endif %}
+
+
+
+</body>
+
+</html>

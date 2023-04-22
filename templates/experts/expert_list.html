@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+  <div id="experts" class="experts parent-div">
+    <div class="cards">
+      {% for expert in experts %}
+      <div class="card-container">
+        <div class="card-image">
+          <img src="{{expert.profile_photo.url}}" alt="{{expert.full_name}}">
+        </div>
+        <div class="card-content">
+          <h3 class="expert-name">{{expert.full_name}}</h3>
+          <h4 class="designation">{{expert.position}}</h4>
+            <a href="{% url 'expert-details' expert.id %}"><button type="button" class="card-btn">View Profile</button></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href=""><button type="button" class="cta-btn">LOAD MORE</button></a>
+  </div>
+
+
+
+{% endblock content %}
