@@ -1,4 +1,4 @@
-from .models import Experts
+from .models import Experts, Educations, Experiences, Skills, Message
 from django.forms import ModelForm, widgets
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -53,3 +53,53 @@ class CustomUserCreationForm(UserCreationForm):
     #     super(CustomUserCreationForm, self).__init__(*args, **kwargs)
     #     for name, field in self.fields.items():
     #         field.widget.attrs.update({'class': 'input'})
+
+
+class EducationForm(ModelForm):
+    class Meta:
+        model = Educations
+        fields = ['degree', 'title', 'university_name', 'institute_name', 'location']
+        widgets = {
+            'degree': forms.Select(choices=Educations.DEGREE_OPTIONS),
+        }
+
+        def __init__(self, *args, **kwargs):
+            super(EducationForm, self).__init__(*args, **kwargs)
+            for name, field in self.fields.items():
+                field.widget.attrs.update({'class': 'input'})
+
+
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experiences
+        fields = ['title', 'organization', 'position', 'duration', 'is_working']
+        widgets = {
+            'position': forms.Select(choices=Experiences.POSITION_CHOICES),
+        }
+
+        def __init__(self, *args, **kwargs):
+            super(ExperienceForm, self).__init__(*args, **kwargs)
+            for name, field in self.fields.items():
+                field.widget.attrs.update({'class': 'input'})
+
+
+class SkillForm(ModelForm):
+    class Meta:
+        model = Skills
+        fields = ['title', 'description']
+
+        def __init__(self, *args, **kwargs):
+            super(SkillForm, self).__init__(*args, **kwargs)
+            for name, field in self.fields.items():
+                field.widget.attrs.update({'class': 'input'})
+
+
+class CreateMessage(ModelForm):
+    class Meta:
+        model = Message
+        fields = ['name', 'email', 'subject', 'body']
+
+    def __init__(self, *args, **kwargs):
+        super(CreateMessage, self).__init__(*args, **kwargs)
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'input'})

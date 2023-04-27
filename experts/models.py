@@ -53,9 +53,13 @@ class Educations(models.Model):
     university_name = models.CharField(max_length=100, null=True, blank=True)
     institute_name = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
+    # created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    # class Meta:
+    #     ordering = ['created']
 
 
 class Experiences(models.Model):
@@ -87,3 +91,20 @@ class Skills(models.Model):
     def __str__(self):
         return self.title
 
+
+class Message(models.Model):
+    sender = models.ForeignKey(Experts, on_delete=models.SET_NULL, null=True, blank=True)
+    recipient = models.ForeignKey(Experts, on_delete=models.SET_NULL, null=True, blank=True, related_name='messages')
+    name = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    subject = models.CharField(max_length=200, null=True, blank=True)
+    body = models.TextField()
+    is_read = models.BooleanField(default=False, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        ordering = ['is_read', '-created']

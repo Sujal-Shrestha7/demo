@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Email or username">
                 <input type="password" name="password" placeholder="Password">
-                <a href="reset_pass.html" class="ls-links">Forgot password ?</a>
+                <a href="{% url 'password_reset' %}" class="ls-links">Forgot password ?</a>
                 <button type="submit" class="logsign-btn">Log in</button>
             </form>
             <div class="line"></div>

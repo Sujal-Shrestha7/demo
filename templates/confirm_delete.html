@@ -1,0 +1,7 @@
+
+<p>Do you want to delete?</p>
+<form method="POST">
+    {% csrf_token %}
+    <a href="{% url 'account' %}"><buton>Back</buton></a>
+    <input type="submit" value="Confirm">
+</form>

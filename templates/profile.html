@@ -1,0 +1,136 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block additional_content %}
+ <div class="profile">
+        <div class="profile-images">
+            <div class="cover-img" style="position: relative;">
+                <a href="{% url 'landing-page' %}" class="back-to-home" style="display:flex; align-items: center; gap: 10px;">
+                    <svg class="svg-icon"
+                        style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                        viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M426.65984 170.65984q17.67424 0 30.16704 12.4928t12.4928 30.16704q0 18.00192-12.67712 30.33088l-225.66912 225.66912 665.00608 0q17.67424 0 30.16704 12.4928t12.4928 30.16704-12.4928 30.16704-30.16704 12.4928l-665.00608 0 225.66912 225.66912q12.67712 12.32896 12.67712 30.33088 0 17.67424-12.4928 30.16704t-30.16704 12.4928q-18.00192 0-30.33088-12.32896l-298.65984-298.65984q-12.32896-13.0048-12.32896-30.33088t12.32896-30.33088l298.65984-298.65984q12.67712-12.32896 30.33088-12.32896z" />
+                    </svg>
+                    Back to Home</a>
+                <img src="{% static 'Images/dark_background.jpg' %}" alt="">
+                <div class="prof-socials">
+                    <a href=""><img src="{% static 'Images/socials_logos/facebook_logo.png' %}" alt="link to facebook"
+                            class="prof-social-logo"></a>
+                    <a href=""><img src="{% static 'Images/socials_logos/instagram_logo.png' %}" alt="link to instagram"
+                            class="prof-social-logo"></a>
+                    <a href=""><img src="{% static 'Images/socials_logos/twitter_logo.png' %}" alt="link to twitter"
+                            class="prof-social-logo"></a>
+                    <a href=""><img src="{% static 'Images/socials_logos/linkedin_logo.png' %}" alt="link to linked in"
+                            class="prof-social-logo"></a>
+                </div>
+            </div>
+            <div class="profile-img">
+                <img src="{{expert.profile_photo.url}}" alt="{{expert.full_name}}">
+            </div>
+        </div>
+        <div class="main-layer">
+
+            <div class="desc-body">
+                <h1 style="margin:20px; padding-top: 10px; font-weight: 400; font-size: 36px;">
+                    {{expert.full_name}}
+                </h1>
+                <nav class="mini-nav">
+                    <button class="nav-btns active-right">Bio</button>
+                    <button class="nav-btns"><span class=""></span>Education</button>
+                    <button class="nav-btns"><span class=""></span>Work Experience</button>
+                </nav>
+                <div class="content bio show">
+                    <p>
+                        {{expert.short_intro}}
+                    </p>
+                </div>
+                <div class="content education">
+                    {% for education in educations %}
+                    <p>{{education.degree}} of {{education.title}} from {{education.university_name}}. </p>
+                    <br>
+                    {% endfor %}
+                </div>
+                <div class="content experience">
+                    {% for experience in experiences %}
+                    <p>{{experience.position}} {{experience.title}} at {{experience.organization}} for
+                        {{experience.duration}} year{{experience.duration|pluralize:'s'}}.</p>
+                    <br>
+
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="pay-card">
+                <p><span class="amount">Rs. 3999</span><br>per session</p>
+                <button class="book-btn">Book an appointment</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Chatbox -->
+{% if request.user.experts.id != expert.id %}
+<a href="{% url 'create-message' expert.id %}">
+    <div class="chatbox-wrapper">
+        <div class="chatbox-toggle">
+            <img src="{% static 'Images/chat_icons/message-36.svg' %}" alt="" style="width: 40px;">
+        </div>
+        <div class="chatbox-message-wrapper">
+            <div class="chatbox-message-header">
+                <div class="chatbox-message-profile">
+                    <img src="{{expert.profile_photo.url}}" alt="" class="chatbox-message-image">
+                    <div>
+                        <h4 class="chatbox-message-name">{{expert.full_name}}</h4>
+                        <p class="chatbox-message-status">
+                            online
+                        </p>
+                    </div>
+                </div>
+                <div class="chatbox-message-dropdown">
+                    <img src="{% static 'Images/chat_icons/vertical-dots.svg' %}" alt=""
+                        style="display: inline-block; width: 30px; height: 30px; padding: 5px;"
+                        class="chatbox-message-dropdown-toggle">
+                    <ul class="chatbox-message-dropdown-menu">
+                        <li>
+                            <a href="#">Search</a>
+                        </li>
+                        <li>
+                            <a href="#">Report</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chatbox-message-content">
+                <h4 class="chatbox-message-no-message">Start a conversation
+                </h4>
+                <!-- <div class="chatbox-message-item sent">
+					<span class="chatbox-message-item-text">
+						Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Quod, fugiat?
+					</span>
+					<span class="chatbox-message-item-time">08:30</span>
+				</div>
+				<div class="chatbox-message-item received">
+					<span class="chatbox-message-item-text">
+						Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Quod, fugiat?
+					</span>
+					<span class="chatbox-message-item-time">08:30</span>
+				</div> -->
+            </div>
+            <div class="chatbox-message-bottom">
+                <form action="#" class="chatbox-message-form">
+                    <textarea rows="1" placeholder="Type message..." class="chatbox-message-input"></textarea>
+                    <button type="submit" class="chatbox-message-submit"><img
+                            src="{% static 'Images/chat_icons/paper-plane-16.svg' %}" style="display: inline; width: 20px;"
+                            alt=""></button>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</a>
+{% endif %}
+{% endblock additional_content %}
